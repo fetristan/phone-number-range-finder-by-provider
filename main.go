@@ -1,11 +1,14 @@
 package main
 
 import (
+	"bytes"
 	"encoding/csv"
 	"fmt"
 	"os"
 	"sort"
 	"strconv"
+
+	"github.com/vma/getopt"
 )
 
 // Structure for a phone number and its provider.
@@ -21,6 +24,12 @@ type Range struct {
 	Provider string
 	Count    int64 // Number of numbers in the range
 }
+
+var (
+	inputPathFlag = getopt.StringLong("input", 'i', "./did.csv", "Path for the phone numbers and providers")
+	outPathFlag   = getopt.StringLong("output", 'o', "./ranges_export.csv", "Path for the ranges with details")
+	helpFlag      = getopt.BoolLong("help", 'h', "display different usable options and quit")
+)
 
 // Function to read phone numbers and providers from a CSV file.
 func readPhoneData(filePath string) ([]PhoneEntry, error) {
@@ -110,20 +119,32 @@ func writeRangesToCSV(ranges []Range, filePath string) error {
 	return nil
 }
 
+// displayHelp, display different usable options
+func displayHelp() {
+	buf := new(bytes.Buffer)
+	getopt.PrintUsage(buf)
+	fmt.Println(buf.String())
+}
+
 func main() {
-	filePath := "./did.csv" // Ensure the file path is correct
-	phoneData, err := readPhoneData(filePath)
+	getopt.Parse()
+
+	if *helpFlag {
+		displayHelp()
+		return
+	}
+
+	phoneData, err := readPhoneData(*inputPathFlag)
 	if err != nil {
 		fmt.Println("Error reading CSV file:", err)
 		return
 	}
 
 	ranges := findRanges(phoneData)
-	exportFilePath := "./ranges_export.csv" // Path for the new CSV file
-	if err := writeRangesToCSV(ranges, exportFilePath); err != nil {
+	if err := writeRangesToCSV(ranges, *outPathFlag); err != nil {
 		fmt.Println("Error writing CSV file:", err)
 		return
 	}
 
-	fmt.Println("CSV file generated successfully:", exportFilePath)
+	fmt.Println("CSV file generated successfully:", *outPathFlag)
 }
