@@ -61,4 +61,4 @@ The output CSV file will have the following columns:
 - Range Length: Number of phone numbers in the range.
 
 ## Contributing
-Contributions to this project are welcome. Please ensure to update tests as appropriate.
+Contributions to this project are welcome.
