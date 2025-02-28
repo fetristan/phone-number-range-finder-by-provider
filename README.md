@@ -15,8 +15,8 @@ This Go project is designed to process a CSV file containing phone numbers and t
 ## Installation
 If you want to run the program from source:
 - Clone the repository to your local machine:
-  git clone https://github.com/fetristan/phone-number-range-finder-by-provider.git
-  cd phone-number-range-finder-by-provider
+- git clone https://github.com/fetristan/phone-number-range-finder-by-provider.git
+- cd phone-number-range-finder-by-provider
 
 Else, download the latest release from the [releases page](https://github.com/fetristan/phone-number-range-finder-by-provider/releases).
 
