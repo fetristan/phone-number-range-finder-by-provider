@@ -25,17 +25,22 @@ Else, download the latest release from the [releases page](https://github.com/fe
 
 2. Run the program
 
-    2.1. From Source
+The options are :
+- `-i "./did.csv"` : Path for the phone numbers and providers
+- `-o "./ranges_export.csv"` : Path for the ranges with details
+- `-h` : display different usable options and quit
 
-        2.1.1. Place your input CSV file in the project directory as did.csv
-        go run main.go
+    2.1 From Source
 
-    2.2. From binary
+        2.1.1 Place your input CSV file in the project directory as did.csv
+        go run main.go [options]
 
-        2.2.1. Execute the binary file.
+    2.2 From binary
+
+        2.2.1 Execute the binary file.
         phone-number-range-finder-by-provider [options]
 
-3. Check the generated ranges_export.csv in the project directory for the output.
+3. Check the generated `ranges_export.csv` in the project directory for the output.
 
 ## Input File Format
 The input CSV file should have the following format:
