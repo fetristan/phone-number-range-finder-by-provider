@@ -32,7 +32,7 @@ The options are :
 
     2.1 From Source
 
-        2.1.1 Place your input CSV file in the project directory as did.csv
+        2.1.1 Execute the go code
         go run main.go [options]
 
     2.2 From binary
